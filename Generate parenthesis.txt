@@ -1,0 +1,32 @@
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var generateParenthesis = function(n) {
+    let ans = []
+    generate( n , 0 , 0 , "" , ans ) // generating a function  with number , open, close ,a  string value  ans array ans
+    return ans ;
+};
+
+const generate = ( n , open , close , str , ans ) =>{
+     if( open === n && open === close ){
+        // if both the value are equal to 0 then push into ans the value of arr
+         let arr= [...str]
+         ans.push( arr.join("") )
+         return
+     }
+  // second consition
+     if( open < n && close < open ){
+           generate( n , open+1 , close , str+"(" , ans )
+           generate( n , open , close + 1 , str+")" , ans )
+     }
+     else if( open < n && close === open ){
+          generate( n , open+1 , close , str+"(" , ans )
+     }
+     else if( open === n && close < n ){
+           generate( n , open , close + 1 , str+")" , ans )
+     }
+}
+// in this question we are given as to generate parenthesis
+// we are given a pair of parenthesis 
+// we have to wite a function to get all combination of the parenthesis that could be generated in array form
